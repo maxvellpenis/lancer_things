@@ -2,9 +2,9 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-8vaae+bfyhNiXk1X080KXGHRQztIRHoNQaIsR82SyZU='; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-tcI5EV4FQZeDmy7w9AsSxeTLeUSVLMYXt6d90krPO14='; style-src 'unsafe-inline'; img-src data: blob:; font-src data:; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Лансеровские штучки v34 — Lancer</title>
+<title>Лансеровские штучки v35 — Lancer</title>
 <style>
 :root{
   --bg:#111113;--panel:#19191d;--panel2:#212127;--line:#303038;--text:#ebe8e3;--muted:#9a968e;
@@ -713,6 +713,7 @@ h2 .btn{vertical-align:middle;margin-left:8px;text-transform:none;letter-spacing
 [data-bk="SR"]{--bk:#d4e157}
 .rg-legal{margin-top:14px;padding-top:10px;border-top:1px solid rgba(255,255,255,.12);font-size:11px;line-height:1.45;color:var(--muted,#8a93a3);opacity:.85}
 .rg-logo{overflow-wrap:anywhere}
+.hb-btn{margin-left:10px}.hb-btn.on{background:var(--red,#991e2a);color:#fff}.hb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}.hb-st{border:1px solid var(--line,#333);border-radius:6px;padding:8px;text-align:center}.hb-roll{background:none;border:0;color:inherit;font-weight:700;cursor:pointer}.hb-v{font-size:26px;font-weight:700}
 
 </style>
 </head>
@@ -732,7 +733,7 @@ h2 .btn{vertical-align:middle;margin-left:8px;text-transform:none;letter-spacing
 
 <script>
 "use strict";
-const APP_VERSION='v34';
+const APP_VERSION='v35';
 /* ============================== ДАННЫЕ ============================== */
 const T=(hull,agi,sys,eng,hp,armor,evasion,edef,speed,size,heat,save,sensors)=>({hull,agi,sys,eng,hp,armor,evasion,edef,speed,size,heat,save,sensors});
 
@@ -2840,6 +2841,7 @@ function openHelp(){
    <li><b>Резервы</b>: все резервы из книги (и свои). Действуют сами: +2 Лимит Ремонта, вторая активация ядра, +1/+2 заряда выбранному Ограниченному, аренда снаряжения без лицензии, +1 точн. к выбранному навыку меха, расширенная подвеска (+1 оружие, +2 снаряжения пилота), невосприимчивость к Замедлению; бонусные очки увеличивают бюджеты.</li>
    <li><b>Автоматика черт, бонусов ядра и талантов</b>: точность/неточность от черт рам (Медленный, Хрупкость, Биотические Компоненты, Литургический Код, Дозорный…), бонусов ядра (Рама Гигес, Биопокрытие Кай, Урок Неверия, Скульпт Шасси…) и талантов (Стрелок, Авангард, Дуэлист, Дебошир, Точный Выстрел, Тактик, Брутал, Лидер…). Сопротивляемость и невосприимчивость рам (Мантикора, Черная Ведьма, Барбаросса, Дрейк, Ланкастер, Чингис, Бриарей) применяются при получении урона.</li>
    <li><b>Инженер</b>: Прототип Оружия — встроенное оружие с выбором типа, урона, Ревизии; Ограниченное перебрасывается при Полном Ремонте.</li>
+   <li><b>v35 — «очень классные хб от максвелла»</b>: кнопка рядом с названием программы включает вкладку «Персонаж» вместо «Связи»: характеристики (очки 5 + УЛ, бросок d20 + характеристика по клику), Удача, роль Стрелок (Боевое чутьё, Двойной выстрел), навыки-триггеры, снаряжение пилота.</li>
    <li><b>v34 — «Лансеровские штучки»</b>: программа переименована (раньше — УЛАН//ТЕРМИНАЛ, ещё раньше — НПС Терминал); все сохранённые данные остаются. На титульном экране — пометка, что это неофициальный бесплатный фанатский инструмент (по Lancer Third Party License). Редактор токенов открывает любые картинки, которые понимает браузер, даже если система не сообщила их тип (например, .jfif из Pinterest или файлы без расширения); при вставке Ctrl+V принимается любой файл-картинка; если перетащить картинку прямо со страницы браузера, программа подскажет, что сделать.</li>
    <li><b>v33 — Проверка безопасности</b>: всё, что программа читает из хранилища браузера, теперь проверяется ещё до запуска: битые или подменённые записи (бой, команды, раунд, тир, пилоты, флот, таблицы) больше не ломают программу и не попадают в разметку — идентификаторы и цвета очищаются, типы и размеры ограничены. Редактор токенов проверяет свои сохранённые настройки (размеры, цвета, числа — только допустимые) и не открывает картинки больше 40 МБ или 64 Мп. Сохранённые данные при этом не теряются.</li>
    <li><b>v32 — Operation Solstice Rain</b>: из модуля встроено только универсальное. Рама <b>Чомолунгма</b> (GMS, доступна всем с УЛ0 вместе с Эверестом; Заменяемые Детали — 1 Ремонт за Структуру на перерыве; в окне Вторжения — подсказка про новые варианты); таланты <b>Подрывник</b> и <b>Сисоп</b>; экзотика: Боевая Винтовка XC-BR (пометка «Дальн. 15 по цели в Захвате»), Звено «Хищник» XC-DPM (окно атаки само убирает Невидимость цели), Паттерн-В Продвинутые Заряды, Комп/Кон «АДЪЮТАНТ» (во вкладке «Мех» выбирается ранг таланта — он работает, пока вы в этом мехе), Миниатюрная Пушка «ЛинУск»; 10 резервов (Дополнительная Броня +1 Броня, Личный Подход +1 точн. — автоматически, остальные — подсказки) и их таблица d20 в ГМ tools; лёгкий авианосец <b>«Эбро»</b> во «Флоте» (с артом, может стоять в Оборонительном заслоне как фрегат). Справочник: что игроки знают о НИП без Сканирования. Цвет надписей книги — салатовый.</li>
@@ -7283,6 +7285,42 @@ const SR_REF={id:'sr',t:'Дополнение · Operation Solstice Rain',dlc:'S
 ]};
 {const bi=REF.findIndex(s=>s.dlc==='BG');REF.splice(bi<0?REF.length:bi,0,SR_REF)}
 {const o=viewRef;viewRef=function(){return o().replace('<h2 id="ref-sr">',`<div class="dlc-hd"><b>Дополнение · Operation Solstice Rain</b><span>Операция «Дождь Солнцестояния»</span></div><h2 id="ref-sr">`)}}
+
+/* ===== v35: «очень классные хб от максвелла» — вкладка «Персонаж» вместо «Связи» (ОБОД//НАРРАТИВ, база) ===== */
+const HB_ST=[['int','ИНТ'],['rea','РЕА'],['lvk','ЛВК'],['tex','ТЕХ'],['har','ХАР'],['vol','ВОЛЯ'],['udc','УДЧ'],['sko','СКО'],['tel','ТЕЛ'],['emp','ЭМП']];
+let HB_ON=!!LS.get('hb_on',false);
+const hbOf=p=>{if(!p.hb||typeof p.hb!=='object')p.hb={st:{},rr:0,chut:0,luck:0};return p.hb};
+const hbBudget=p=>5+(+p.ll||0),hbUsed=p=>HB_ST.reduce((s,[k])=>s+(hbOf(p).st[k]||0),0);
+{const o=cleanPilot;cleanPilot=function(raw,k){const p=o(raw,k);try{const h=raw&&raw.hb&&typeof raw.hb==='object'?raw.hb:{},st={};
+  HB_ST.forEach(([s])=>{const v=num(h.st&&h.st[s],0,10,0);if(v)st[s]=v});p.hb={st,rr:num(h.rr,0,10,0),chut:num(h.chut,0,40,0),luck:num(h.luck,0,20,0)}}catch(e){}return p}}
+function charView(p){const h=hbOf(p),used=hbUsed(p),bud=hbBudget(p),rr=h.rr;
+  const v=viewPilot(p),i=v.indexOf('<h2>Снаряжение пилота</h2>'),j=v.indexOf('<h2>Резервы',i),gear=i>=0?v.slice(i,j>i?j:undefined):'';
+  const trig=PCD.skills.filter(s=>p.skills[s.id]).map(s=>`<button class="btn sm" data-hb="trig" data-v="${s.id}">${esc(s.name)} +${p.skills[s.id]*2}</button>`).join('')+(p.custom||[]).map((c,k)=>`<button class="btn sm" data-hb="ctrig" data-v="${k}">${esc(c.name||'Свой')} +${(c.rank||1)*2}</button>`).join('');
+  const ab=[[1,'Боевое чутьё',`Очки чутья на сессию: ранг × 2 = ${rr*2}. 1 очко — урон по тебе от одного попадания −1; 1 очко — +1 Точность на одну атаку; 2 очка — прицельный выстрел без Помех.`],[3,'Двойной выстрел','Раз за ход после атаки можно атаковать вторую цель в пределах 3 клеток от первой с +1 Помехой.']];
+  return `<h2>Характеристики <span class="muted" style="font-size:12px;text-transform:none">очки: ${used}/${bud}</span></h2>
+  <div class="hb-grid">${HB_ST.map(([k,l])=>{const x=h.st[k]||0;return `<div class="hb-st"><button class="hb-roll" data-hb="roll" data-v="${k}">${l}</button><div class="hb-v">${x}</div>
+   <div><button class="pm" data-hb="st" data-v="${k}" data-d="-1" ${x<=0?'disabled':''}>−</button><button class="pm" data-hb="st" data-v="${k}" data-d="1" ${x>=10||used>=bud?'disabled':''}>+</button></div></div>`}).join('')}</div>
+  <div class="row-btns" style="margin:8px 0"><span class="ntag">Удача: <button class="pm" data-hb="luck" data-d="-1">−</button><b>${h.luck}</b>/${h.st.udc||0}<button class="pm" data-hb="luck" data-d="1">+</button></span>
+   <button class="btn sm" data-hb="sess">Новая сессия</button></div>
+  <h2>Роль: Стрелок <span class="ntag">ранг <button class="pm" data-hb="rr" data-d="-1">−</button><b>${rr}</b><button class="pm" data-hb="rr" data-d="1">+</button></span></h2>
+  ${rr>=1?`<div class="row-btns"><span class="ntag">Чутьё: <button class="pm" data-hb="chut" data-d="-1">−</button><b>${h.chut}</b>/${rr*2}<button class="pm" data-hb="chut" data-d="1">+</button></span></div>`:''}
+  ${ab.filter(a=>rr>=a[0]).map(a=>`<div class="trait"><b>Ранг ${a[0]}. ${a[1]}</b><div>${esc(a[2])}</div></div>`).join('')}
+  <h2>Навыки</h2><div class="row-btns">${trig||'<span class="muted">Навыков-триггеров нет — добавьте во вкладке «Пилот».</span>'}</div>
+  ${gear}`}
+{const o=viewPc;viewPc=function(){if(!HB_ON)return o();const ob=bondView;bondView=charView;try{return o().replace('data-v="bond">Связь</button>','data-v="bond">Персонаж</button>')}finally{bondView=ob}}}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-hb]');if(!b||b.disabled)return;const a=b.dataset.hb;
+  if(a==='tog'){HB_ON=!HB_ON;LS.set('hb_on',HB_ON);b.classList.toggle('on',HB_ON);if(S.view==='pc')pcRender();return}
+  const p=curP();if(!p)return;const h=hbOf(p),d=+b.dataset.d||0,v=b.dataset.v;
+  if(a==='st'){const x=h.st[v]||0;if(d>0&&(hbUsed(p)>=hbBudget(p)||x>=10))return;h.st[v]=Math.max(0,x+d)}
+  else if(a==='roll'){const r=rnd(20),x=h.st[v]||0;pcLog(p,'Проверка '+HB_ST.find(s=>s[0]===v)[1],`d20 [${r}] ${sgn(x)} = ${r+x}`)}
+  else if(a==='trig'){const s=PCD.skills.find(x=>x.id===v);if(s)pcOpenTrigger(p,s.name,p.skills[v]);return}
+  else if(a==='ctrig'){const c=(p.custom||[])[+v];if(c)pcOpenTrigger(p,c.name||'Свой',c.rank||1);return}
+  else if(a==='luck')h.luck=Math.max(0,Math.min(h.st.udc||0,h.luck+d));
+  else if(a==='chut')h.chut=Math.max(0,Math.min(h.rr*2,h.chut+d));
+  else if(a==='rr')h.rr=Math.max(0,Math.min(10,h.rr+d));
+  else if(a==='sess'){h.luck=h.st.udc||0;h.chut=h.rr*2}
+  pcRender()});
+try{const l=document.querySelector('.logo');if(l&&!document.querySelector('[data-hb="tog"]'))l.insertAdjacentHTML('afterend',`<button class="btn sm hb-btn ${HB_ON?'on':''}" data-hb="tog">очень классные хб от максвелла</button>`)}catch(e){}
 
 /* ============================== v33: окончательная проверка сохранённых пилотов ==============================
    m12 чистит пилотов из хранилища сразу (чтобы ничего не упало), но поля, которые добавили более поздние модули
