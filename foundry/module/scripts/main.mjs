@@ -1,6 +1,7 @@
 // Точка входа модуля «Лансеровские штучки»
 import { MOD } from "./util.mjs";
 import { LsPilotSheet } from "./pilot-sheet.mjs";
+import { LsMechSheet } from "./mech-sheet.mjs";
 
 Hooks.once("init", () => {
   if (game.system.id !== "lancer") {
@@ -12,5 +13,10 @@ Hooks.once("init", () => {
     makeDefault: false,
     label: "Лансеровские штучки — пилот",
   });
-  console.log(`${MOD} | лист пилота зарегистрирован`);
+  foundry.documents.collections.Actors.registerSheet(MOD, LsMechSheet, {
+    types: ["mech"],
+    makeDefault: false,
+    label: "Лансеровские штучки — мех",
+  });
+  console.log(`${MOD} | листы пилота и меха зарегистрированы`);
 });

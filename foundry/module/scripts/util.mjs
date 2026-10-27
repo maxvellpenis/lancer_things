@@ -73,3 +73,24 @@ export async function rollChat(actor, formula, title, extra) {
   await r.toMessage({ speaker: ChatMessage.getSpeaker({ actor }), flavor: `<b>${esc(title)}</b>${extra ? "<br>" + extra : ""}` });
   return r;
 }
+
+/* ---------- картинка жетона ---------- */
+const DEF_IMG = ["icons/svg/mystery-man.svg", "systems/lancer/assets/icons/pilot.svg", "systems/lancer/assets/icons/mech.svg", "systems/lancer/assets/icons/npc_class.svg", "systems/lancer/assets/icons/deployable.svg"];
+export const tokenImg = a => a.prototypeToken?.texture?.src || a.img;
+/** Сменить картинку жетона: прототип + все жетоны этого актёра на всех сценах.
+ *  Портрет в списке актёров тоже меняется, если он был стандартным или совпадал с жетоном. */
+export async function setTokenImg(actor, path) {
+  const oldTok = actor.prototypeToken?.texture?.src, oldImg = actor.img;
+  const upd = { "prototypeToken.texture.src": path };
+  if (!oldImg || DEF_IMG.includes(oldImg) || (typeof CONST !== "undefined" && oldImg === CONST.DEFAULT_TOKEN) || oldImg === oldTok) upd.img = path;
+  await actor.update(upd);
+  for (const scene of game.scenes ?? []) {
+    const toks = scene.tokens.filter(t => t.actorId === actor.id && t.isOwner);
+    if (!toks.length) continue;
+    try { await scene.updateEmbeddedDocuments("Token", toks.map(t => ({ _id: t.id, "texture.src": path }))); }
+    catch (e) { console.warn(`${MOD} | не удалось обновить жетон на сцене ${scene.name}`, e); }
+  }
+}
+export function pickTokenImg(actor) {
+  return new foundry.applications.apps.FilePicker.implementation({ type: "image", current: tokenImg(actor), callback: p => setTokenImg(actor, p) }).browse();
+}

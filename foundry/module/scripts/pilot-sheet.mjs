@@ -1,5 +1,5 @@
 // Лист пилота «Лансеровские штучки» для системы Lancer (Foundry VTT 13)
-import { RU, MOD, esc, sgn, fmt, asset, MANU, MANU_FULL, MANU_ORDER, MANU_COL, ruName, lidOf, packDocs, chat } from "./util.mjs";
+import { RU, MOD, esc, sgn, fmt, asset, MANU, MANU_FULL, MANU_ORDER, MANU_COL, ruName, lidOf, packDocs, chat, tokenImg, pickTokenImg } from "./util.mjs";
 
 const PILOT_PACK = "world.pilot-items", MECH_PACK = "world.mech-items";
 const HASE = [["hull", "Корпус", "К"], ["agi", "Маневренность", "М"], ["sys", "Системы", "С"], ["eng", "Инженерия", "И"]];
@@ -10,24 +10,6 @@ const HASE_FX = {
   eng: v => `Тепл. Макс. +${v}, доп. заряды +${Math.floor(v / 2)}`,
 };
 const TABS = [["pilot", "Пилот"], ["mechs", "Мехи"], ["combat", "Бой"], ["char", "Персонаж"]];
-
-/** Смена портрета: портрет + жетон-прототип + уже стоящие на картах жетоны этого актёра,
- *  если их картинка совпадала со старым портретом/прототипом (свою отдельную картинку жетона не трогаем). */
-export async function setPortrait(actor, path) {
-  const oldImg = actor.img, oldTok = actor.prototypeToken?.texture?.src;
-  const defaults = [CONST.DEFAULT_TOKEN, "icons/svg/mystery-man.svg", oldImg].filter(Boolean);
-  const syncProto = !oldTok || defaults.includes(oldTok);
-  const def = syncProto ? [...defaults, oldTok].filter(Boolean) : defaults;
-  const upd = { img: path };
-  if (syncProto) upd["prototypeToken.texture.src"] = path;
-  await actor.update(upd);
-  for (const scene of game.scenes ?? []) {
-    const toks = scene.tokens.filter(t => t.actorId === actor.id && t.actorLink && t.isOwner && def.includes(t.texture?.src));
-    if (!toks.length) continue;
-    try { await scene.updateEmbeddedDocuments("Token", toks.map(t => ({ _id: t.id, "texture.src": path }))); }
-    catch (e) { console.warn("lancer-shtuchki | не удалось обновить жетон", e); }
-  }
-}
 
 export class LsPilotSheet extends foundry.applications.sheets.ActorSheetV2 {
   static DEFAULT_OPTIONS = {
@@ -70,7 +52,7 @@ export class LsPilotSheet extends foundry.applications.sheets.ActorSheetV2 {
     const a = this.document, s = a.system, B = this.budgets();
     const bud = b => `<span class="ls-bud ${b.used > b.max ? "over" : b.used === b.max ? "full" : ""}">${esc(b.l)}: <b>${b.used}/${b.max}</b></span>`;
     const head = `<header class="ls-head">
-      <img class="ls-portrait" src="${esc(a.img)}" data-ls="img" title="Сменить портрет">
+      <img class="ls-portrait" src="${esc(tokenImg(a))}" data-ls="img" title="Сменить картинку жетона (на столе тоже)">
       <div class="ls-names"><input class="ls-big" data-lsf="name" value="${esc(a.name)}" placeholder="Имя пилота">
         <input class="ls-cs" data-lsf="system.callsign" value="${esc(s.callsign)}" placeholder="Позывной"></div>
       <div class="ls-ll"><span>Уровень лицензии</span><div><button type="button" class="ls-pm" data-ls="ll" data-d="-1">−</button><b>${s.level}</b><button type="button" class="ls-pm" data-ls="ll" data-d="1">+</button></div>
@@ -193,7 +175,7 @@ export class LsPilotSheet extends foundry.applications.sheets.ActorSheetV2 {
         ${m.id === aid ? '<span class="ls-tagon">активный</span>' : `<button type="button" class="ls-btn" data-ls="mechact" data-v="${m.id}">Сделать активным</button>`}
         <button type="button" class="ls-btn" data-ls="mechopen" data-v="${m.id}">Открыть</button></div>`).join("") || '<p class="ls-muted">Мехов пока нет.</p>'}
       <button type="button" class="ls-btn red" data-ls="mechnew">＋ Новый мех</button>
-      <p class="ls-muted ls-small">Сборка меха в стиле «Лансеровских штучек» — этап 2.</p>`;
+      <p class="ls-muted ls-small">Чтобы мех открывался в нашем стиле: в окне меха «Лист» → «Лансеровские штучки — мех».</p>`;
   }
   renderCombat(ctx) {
     const s = this.document.system;
@@ -234,7 +216,7 @@ export class LsPilotSheet extends foundry.applications.sheets.ActorSheetV2 {
     if (!this.isEditable) return;
     const ctx = await this._prepareContext({});
     switch (act) {
-      case "img": return new foundry.applications.apps.FilePicker.implementation({ type: "image", current: a.img, callback: p => setPortrait(a, p) }).browse();
+      case "img": return pickTokenImg(a);
       case "ll": return a.update({ "system.level": Math.max(0, Math.min(12, (a.system.level || 0) + d)) });
       case "hase": return a.update({ [`system.${v}`]: Math.max(0, Math.min(6, (a.system[v] || 0) + d)) });
       case "hp": return a.update({ "system.hp.value": Math.max(0, Math.min(a.system.hp.max, a.system.hp.value + d)) });
