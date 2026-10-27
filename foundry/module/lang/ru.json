@@ -1,0 +1,607 @@
+{
+ "TYPES": {
+  "Actor": {
+   "deployable": "Развёртываемое",
+   "mech": "Мех",
+   "npc": "НИП",
+   "pilot": "Пилот"
+  },
+  "Item": {
+   "bond": "Узы",
+   "core_bonus": "Бонус ядра",
+   "frame": "Рама",
+   "license": "Лицензия",
+   "mech_system": "Система меха",
+   "mech_weapon": "Оружие меха",
+   "npc_class": "Класс НИП",
+   "npc_feature": "Черта НИП",
+   "npc_template": "Шаблон НИП",
+   "organization": "Организация",
+   "pilot_armor": "Броня пилота",
+   "pilot_gear": "Снаряжение пилота",
+   "pilot_weapon": "Оружие пилота",
+   "reserve": "Резерв",
+   "skill": "Навык-триггер",
+   "status": "Статус/Состояние",
+   "talent": "Талант",
+   "weapon_mod": "Мод оружия"
+  }
+ },
+ "lancer": {
+  "LancerPilotSheet": "Лист пилота системы LANCER",
+  "LancerMechSheet": "Лист меха системы LANCER",
+  "LancerDeployableSheet": "Лист развёртываемого системы LANCER",
+  "LancerNPCSheet": "Лист НИП системы LANCER",
+  "LancerItemSheet": "Лист предмета системы LANCER",
+  "LancerFrameSheet": "Лист рамы системы LANCER",
+  "LancerLicenseSheet": "Лист лицензии системы LANCER",
+  "LancerNPCClassSheet": "Лист класса/шаблона НИП системы LANCER",
+  "LancerNPCFeatureSheet": "Лист черты НИП системы LANCER",
+  "Actor": {
+   "FIELDS": {
+    "activations": {
+     "label": "Активации"
+    }
+   }
+  },
+  "placeholder": {
+   "name": "Имя"
+  },
+  "common-sheet": {
+   "tabs": {
+    "effects": "<ЭФФЕКТЫ//АКТИВНЫЕ>"
+   },
+   "headers": {
+    "combatUtilities": "БОЕВЫЕ ДЕЙСТВИЯ"
+   },
+   "buttons": {
+    "basicAttack": "АТАКА",
+    "damage": "УРОН",
+    "fullRepair": "ПОЛНЫЙ РЕМОНТ",
+    "overheat": "ПЕРЕГРЕВ",
+    "scan": "СКАНИРОВАНИЕ",
+    "stabilize": "СТАБИЛИЗАЦИЯ",
+    "structure": "СТРУКТУРА",
+    "tech": "ТЕХ. АТАКА"
+   },
+   "shortStats": {
+    "hull": "КОР",
+    "agi": "МАН",
+    "sys": "СИС",
+    "eng": "ИНЖ",
+    "level": "УРОВЕНЬ ЛИЦЕНЗИИ",
+    "grit": "СТОЙКОСТЬ",
+    "tier": "РАНГ",
+    "activations": "АКТИВ.",
+    "hp": "ПЗ",
+    "evasion": "УКЛ",
+    "armor": "БРОНЯ",
+    "structure": "СТРУКТ",
+    "heat": "НАГРЕВ",
+    "heatcap": "ТЕПЛ. МАКС.",
+    "edef": "Э-ЗАЩ",
+    "stress": "НАГРУЗКА",
+    "speed": "СКОР",
+    "save": "СПАС",
+    "sensor_range": "СЕНС",
+    "tech_attack": "ТЕХ. АТК",
+    "overcharge": "ПЕРЕГРУЗКА",
+    "burn": "ГОРЕНИЕ",
+    "overshield": "СВЕРХЩИТ",
+    "repairs": "РЕМ",
+    "size": "РАЗМ",
+    "cost": "СТОИМОСТЬ",
+    "HP": "ПЗ",
+    "ARMOR": "БРОНЯ",
+    "REPAIRS": "РЕМОНТ",
+    "EVASION": "УКЛОНЕНИЕ",
+    "E-DEF": "Э-ЗАЩИТА",
+    "HEAT CAP": "ТЕПЛ. МАКС.",
+    "SENSORS": "СЕНСОРЫ",
+    "SAVE": "СПАС. ЦЕЛЬ",
+    "SIZE": "РАЗМЕР",
+    "SPEED": "СКОРОСТЬ",
+    "SYS POINTS": "СП",
+    "TECH ATK": "ТЕХ. АТАКА",
+    "COST": "СТОИМОСТЬ",
+    "HEAT COST": "НАГРЕВ",
+    "EFFICIENCY": "ЭФФЕКТИВНОСТЬ",
+    "INFLUENCE": "ВЛИЯНИЕ"
+   }
+  },
+  "deployable-sheet": {
+   "header": {
+    "owner": "Владелец"
+   },
+   "tabs": {
+    "status": "<СОСТОЯНИЕ>",
+    "config": "<НАСТРОЙКА>"
+   },
+   "deployer": {
+    "label": "РАЗМЕСТИВШИЙ"
+   },
+   "stats": {
+    "label": "БАЗОВЫЕ ХАРАКТЕРИСТИКИ"
+   }
+  },
+  "mech-sheet": {
+   "header": {
+    "inactive-warning": "Внимание: мех не активен — бонусы пилота не учитываются"
+   },
+   "tabs": {
+    "stats": "<МЕХ//ХАРАКТЕРИСТИКИ>",
+    "loadout": "<МЕХ//СНАРЯЖЕНИЕ>",
+    "talents": "<ПИЛОТ//ТАЛАНТЫ>"
+   },
+   "core": {
+    "label": "ЯДРО"
+   },
+   "actions": {
+    "label": "ДЕЙСТВИЯ"
+   },
+   "macros": {
+    "label": "МАКРОСЫ"
+   },
+   "system": {
+    "label": "СНАРЯЖЕНИЕ",
+    "sp-used": "СП ЗАНЯТО"
+   }
+  },
+  "npc-sheet": {
+   "header": {
+    "class": "КЛАСС",
+    "templates": "ШАБЛОНЫ"
+   },
+   "class": {
+    "label": "КЛАСС",
+    "none": "КЛАСС НЕ НАЙДЕН"
+   },
+   "templates": {
+    "label": "ШАБЛОНЫ"
+   },
+   "features": {
+    "label": "ЧЕРТЫ"
+   },
+   "effects": {
+    "label": "АКТИВНЫЕ ЭФФЕКТЫ"
+   }
+  },
+  "pilot-sheet": {
+   "header": {
+    "ll": "УЛ",
+    "cs": "ПОЗЫВНОЙ",
+    "name": "ИМЯ",
+    "bg": "ПРЕДЫСТОРИЯ"
+   },
+   "tabs": {
+    "cloud": "<RM-4://СИНХР>",
+    "dossier": "<ПИЛОТ//ДОСЬЕ>",
+    "narrative": "<ПИЛОТ//СЮЖЕТ>",
+    "tactical": "<ПИЛОТ//ТАКТИКА>",
+    "loadout": "<СНАРЯЖЕНИЕ>",
+    "mech": "<МЕХ//АКТИВНЫЙ>"
+   },
+   "cloud-header": {
+    "label": "RM-4://(ID ОМНИСЕТИ)",
+    "raw-placeholder": "Вставьте код пилота из Comp/Con"
+   },
+   "cloud-download": {
+    "label": "ЗАГРУЗИТЬ",
+    "description": "Здесь можно импортировать код пилота из Comp/Con.",
+    "lastSync": "Последняя синхронизация: {timestamp}"
+   },
+   "cloud-upload": {
+    "label": "ВЫГРУЗИТЬ",
+    "wip": "В РАЗРАБОТКЕ"
+   },
+   "json-import": {
+    "label": "ИМПОРТ ФАЙЛА",
+    "description": "Здесь можно импортировать JSON-файл, выгруженный из Comp/Con.",
+    "placeholder": "Выберите JSON-файл…"
+   },
+   "dossier": {
+    "cs": "ПОЗЫВНОЙ",
+    "name": "ИМЯ",
+    "background": "ПРЕДЫСТОРИЯ"
+   },
+   "narrative": {
+    "bond": "УЗЫ: {bondName}",
+    "burdens": "БРЕМЕНА",
+    "clocks": "ЧАСЫ"
+   },
+   "tactical": {
+    "armor": "БРОНЯ",
+    "weapons": "ОРУЖИЕ",
+    "gear": "СНАРЯЖЕНИЕ",
+    "reserves": "РЕЗЕРВЫ",
+    "licenses": "ЛИЦЕНЗИИ",
+    "cores": "БОНУСЫ ЯДРА"
+   },
+   "abilities": {
+    "skills": "НАВЫКИ-ТРИГГЕРЫ",
+    "talents": "ТАЛАНТЫ"
+   }
+  },
+  "chat-card": {
+   "title": {
+    "attack": "// АТАКА //",
+    "damage": "// УРОН //",
+    "reliable": "// НАДЁЖНОЕ //",
+    "crit-damage": "// УРОН КРИТА //",
+    "self-heat": "// НАГРЕВ СЕБЕ //",
+    "defense-hit": "// АТАКА ПРОТИВ {defense} //",
+    "effect": "// ЭФФЕКТ //",
+    "on-attack": "// ПРИ АТАКЕ //",
+    "on-hit": "// ПРИ ПОПАДАНИИ //",
+    "on-crit": "// ПРИ КРИТЕ //",
+    "charge-roll": "// БРОСОК ПЕРЕЗАРЯДКИ //",
+    "recharged": "// ПЕРЕЗАРЯЖЕНО //",
+    "structure": "// УРОН СТРУКТУРЕ //",
+    "overheating": "// ПЕРЕГРЕВ //",
+    "cascade": "// КАСКАД //",
+    "check": "// ПРОВЕРКА :: {check} //",
+    "system": "// СИСТЕМА :: {title} //",
+    "mod": "// МОД :: {title} //",
+    "trait": "// ЧЕРТА :: {title} //",
+    "tech": "// ТЕХ :: {title} //",
+    "reaction": "// РЕАКЦИЯ :: {title} //"
+   },
+   "label": {
+    "trigger": "ТРИГГЕР",
+    "effect": "ЭФФЕКТ"
+   },
+   "attack": {
+    "crit": "КРИТ",
+    "hit": "ПОПАДАНИЕ",
+    "miss": "ПРОМАХ",
+    "roll-all-damage": "БРОСИТЬ УРОН"
+   },
+   "exclamation": {
+    "overkill": "ИЗБЫТОЧНЫЙ УРОН!"
+   },
+   "overcharge": {
+    "charged": "{target} + :: ЗАРЯЖЕНО",
+    "uncharged": "{target} + :: НЕ ЗАРЯЖЕНО"
+   },
+   "remaining": "ОСТАЛОСЬ {total} / {max}"
+  },
+  "floatingDamageNumbers": {
+   "name": "Всплывающие числа урона",
+   "hint": "Показывать всплывающие числа при изменении характеристик, в том числе при применении урона. Настройка у каждого клиента своя."
+  },
+  "simpleFonts": {
+   "name": "Простые шрифты",
+   "hint": "Заменить стилизованные шрифты заголовков на Helvetica для читаемости. Настройка у каждого клиента своя."
+  },
+  "uiTheme": {
+   "name": "Тема интерфейса",
+   "hint": "Цветовая схема интерфейса по мотивам тем Comp/Con.",
+   "gms": "ДМС Красная (по умолчанию)",
+   "gmsDark": "ДМС Тёмная",
+   "msmc": "MSMC Solarized",
+   "horus": "Терминал ХОРУС",
+   "ha": "Оборонная Промышленность Харрисон: Рас-Шамра",
+   "ssc": "СШК: Звёздный Конгресс",
+   "ipsn": "ИПС-Н: Карина",
+   "gal": "FORECAST/GALSIM"
+  },
+  "pauseIcon": {
+   "name": "Значок паузы",
+   "hint": "Значок на экране паузы Foundry.",
+   "gms": "Союз/ДМС (по умолчанию)",
+   "horus": "ХОРУС",
+   "ha": "Оборонная Промышленность Харрисон",
+   "ssc": "СШК",
+   "ips-n": "ИПС-Н",
+   "albatross": "Альбатрос",
+   "aun": "Восхождение Аун",
+   "barony": "Торговые Баронства Карракина",
+   "horizon": "Коллектив Горизонт",
+   "ra": "РА",
+   "sparri": "Спарри",
+   "voladores": "Воладорес"
+  },
+  "scanOutput": {
+   "name": "Куда выводить сканирование",
+   "hint": "Где сохранять результаты сканирования?",
+   "both": "Чат и журнал",
+   "chat": "Только чат",
+   "journal": "Только журнал"
+  },
+  "statusIconsConfig": {
+   "menu-name": "Значки состояний",
+   "menu-label": "Настройка значков состояний",
+   "menu-hint": "Какие значки состояний показывать в меню жетона",
+   "defaultConditionsStatus": "Стандартные состояния и статусы",
+   "defaultConditionsStatus-desc": "Включить стандартный набор значков состояний и статусов",
+   "cancerConditionsStatus": "Состояния и статусы от Cancermantis",
+   "cancerConditionsStatus-desc": "Включить набор значков состояний и статусов от Cancermantis",
+   "cancerNPCTemplates": "Шаблоны НИП от Cancermantis",
+   "cancerNPCTemplates-desc": "Включить набор значков шаблонов НИП от Cancermantis",
+   "hayleyConditionsStatus": "Состояния и статусы от Hayley",
+   "hayleyConditionsStatus-desc": "Включить набор значков состояний и статусов от Hayley",
+   "hayleyPC": "Системы игроков от Hayley",
+   "hayleyPC-desc": "Включить набор значков эффектов систем игроков от Hayley",
+   "hayleyNPC": "Системы НИП от Hayley",
+   "hayleyNPC-desc": "Включить набор значков эффектов систем НИП от Hayley",
+   "hayleyUtility": "Служебные от Hayley",
+   "hayleyUtility-desc": "Включить набор служебных значков от Hayley",
+   "tommyConditionsStatus": "Состояния и статусы от Tommy",
+   "tommyConditionsStatus-desc": "Включить набор значков состояний и статусов от Tommy"
+  },
+  "statusIconsNames": {
+   "abjure": "Отречение",
+   "aceso": "Асесо",
+   "blind": "Ослеплён",
+   "bolster": "Подкрепление",
+   "burn": "Горение",
+   "camus_razor": "Бритва Камю",
+   "chain": "Цепь",
+   "chains_of_prometheus": "Цепи Прометея",
+   "clamp_bomb": "Бомба-захват",
+   "commander": "Командир",
+   "cover_hard": "Укрытие — твёрдое",
+   "cover_soft": "Укрытие — лёгкое",
+   "dangerzone": "Опасная Зона",
+   "destroyed": "Уничтожен",
+   "dimensional_shackles": "Пространственные Оковы",
+   "dispersal_shield_1": "Рассеивающий Щит 1",
+   "dispersal_shield_2": "Рассеивающий Щит 2",
+   "dispersal_shield_3": "Рассеивающий Щит 3",
+   "dominions_breadth": "Ширь Владычества",
+   "downandout": "Выведен из строя",
+   "duat_gate": "Врата Дуата",
+   "echo_edge": "Эхо-Клинок",
+   "elite": "Элита",
+   "engaged": "Вовлечён",
+   "excommunicate": "Отлучение",
+   "exotic": "Экзотика",
+   "exposed": "Уязвим",
+   "fade_cloak": "Плащ Угасания",
+   "flaw_minus": "Изъян −",
+   "flaw_plus": "Изъян +",
+   "flying": "Полёт",
+   "focus_down": "Сосредоточенный огонь",
+   "follower_count": "Число последователей",
+   "grappled": "Схвачен",
+   "gravity": "Гравитация",
+   "grind_maniple": "Манипула-Дробилка",
+   "grunt": "Рядовой",
+   "haste": "Ускорение",
+   "hidden": "Скрыт",
+   "hiddeninvis": "Скрыт и Невидим",
+   "hunter_lock": "Охотничий Захват",
+   "hyperdense_armor": "Сверхплотная Броня",
+   "illusionary_subroutines": "Иллюзорные Подпрограммы",
+   "immobilized": "Обездвижен",
+   "impaired": "Ослаблен",
+   "imperial_eye": "Имперское Око",
+   "intangible": "Неосязаем",
+   "investiture": "Инвеститура",
+   "invisible": "Невидим",
+   "jammed": "Заклинен",
+   "kraul_grapple": "Хватка Краула",
+   "latch_drone": "Дрон-Защёлка",
+   "lockon": "Захват",
+   "marked": "Помечен",
+   "mercenary": "Наёмник",
+   "metahook": "Метакрюк",
+   "molten_puncture": "Расплавленный Прокол",
+   "npc_tier_1": "Ранг 1",
+   "npc_tier_2": "Ранг 2",
+   "npc_tier_3": "Ранг 3",
+   "overshield": "Сверхщит",
+   "pain_transference": "Перенос Боли",
+   "petrify": "Окаменение",
+   "pirate": "Пират",
+   "prone": "Сбит с ног",
+   "reactor_meltdown": "Расплавление реактора",
+   "resistance_burn": "Сопр. горению",
+   "resistance_energy": "Сопр. энерг. урону",
+   "resistance_explosive": "Сопр. взрывному урону",
+   "resistance_heat": "Сопр. нагреву",
+   "resistance_kinetic": "Сопр. кинетич. урону",
+   "retort_loop": "Петля Возмездия",
+   "rpv": "ДПА",
+   "sanctuary": "Убежище",
+   "shahnameh": "Шахнаме",
+   "ship": "Корабль",
+   "shredded": "Расщеплён",
+   "shutdown": "Выключен",
+   "slow": "Замедлен",
+   "spacer": "Космоплаватель",
+   "spike": "Шип",
+   "stasis": "Стазис",
+   "stunned": "Ошеломлён",
+   "supercharger": "Суперзарядник",
+   "sympathetic_shield": "Симпатический щит",
+   "tachyon_shield": "Тахионный Щит",
+   "tear_down": "Снос",
+   "terrify": "Ужас",
+   "tiercust": "Свой ранг",
+   "tracking_bug": "Следящий Жучок",
+   "trueblack": "Эгида Абсолютной Тьмы",
+   "ultra": "Ультра",
+   "unravel": "Распутывание",
+   "vehicle": "Транспорт",
+   "veteran": "Ветеран",
+   "viral_logic": "Вирусная Логика",
+   "walk_of_kings": "Поступь Королей",
+   "warp_sensors": "Варп-Сенсоры"
+  },
+  "automation": {
+   "menu-name": "Автоматизация",
+   "menu-label": "Настройки автоматизации системы",
+   "menu-hint": "Какие автоматические функции системы включены (или выключить все)",
+   "master-switch": "Включено",
+   "master-switch-desc": "Выключите, чтобы делать всё вручную",
+   "attacks": "Оценка бросков атаки",
+   "attacks-desc": "Система сама считает попадания и прочее, связанное с атаками.",
+   "damage": "Применение урона",
+   "damage-desc": "Система сама применяет выброшенный урон к целям.",
+   "structure": "Структура/Нагрузка",
+   "structure-desc": "Автоматически предлагать бросок структуры или нагрузки, когда ПЗ меха падают до 0 или нагрев превышает максимум.",
+   "overcharge_heat": "Нагрев от Перегрузки",
+   "overcharge_heat-desc": "Автоматически добавлять нагрев при броске Перегрузки",
+   "attack_self_heat": "Нагрев себе от атак",
+   "attack_self_heat-desc": "Если у оружия метка «Избыточный Урон» или «Нагрев (свой)», автоматически добавлять нагрев.",
+   "remove_templates": "Убирать шаблоны",
+   "remove_templates-desc": "Убирать шаблоны областей от атак при смене хода?",
+   "limited_loading": "Учёт Ограниченного/Заряжаемого",
+   "limited_loading-desc": "Автоматически отслеживать заряды и перезарядку при использовании предметов?",
+   "npc_recharge": "Перезарядка НИП",
+   "npc_recharge-desc": "Автоматически бросать перезарядку систем НИП в начале их хода.",
+   "token_size": "Размер жетонов",
+   "token_size-desc": "Автоматически подгонять размер жетона под Размер актёра."
+  },
+  "actionTracker": {
+   "menu-name": "Трекер действий",
+   "menu-label": "Настройки трекера действий",
+   "menu-hint": "Настройки панели трекера действий и её автоматизации.",
+   "showHotbar": "Показывать панель",
+   "showHotbar-desc": "Показывать плавающую панель действий во время боя.",
+   "allowPlayers": "Разрешить игрокам",
+   "allowPlayers-desc": "Игроки могут сами отмечать свои действия.",
+   "printMessages": "Сообщения в чат",
+   "printMessages-desc": "Писать в чат о начале и конце хода жетона."
+  },
+  "initiative": {
+   "sorttracker": "Сортировать трекер",
+   "sorttracker-desc": "Поднимать того, кто ходит, наверх трекера, а походивших — опускать в конец.",
+   "appearancesettingslabel": "Внешний вид",
+   "appearancesettingsbutton": "Внешний вид",
+   "appearancesettings-desc": "Цвета и значок трекера"
+  },
+  "squaregriddiagonals": {
+   "name": "Диагонали на квадратной сетке",
+   "hint": "Как считать расстояние при движении по диагонали на квадратной сетке.",
+   "111": "1-1-1: диагональ стоит 1 (по умолчанию)",
+   "121": "1-2-1: диагонали чередуются 1 и 2",
+   "222": "2-2-2: манхэттенское расстояние, диагональ стоит 2",
+   "euc": "Евклидово расстояние с округлением"
+  },
+  "effect": {
+   "categories": {
+    "passive": "Пассивные",
+    "passthrough": "Передаваемые",
+    "disabled": "Отключённые",
+    "inherited": "Унаследованные"
+   }
+  },
+  "tables": {
+   "structure": {
+    "title": {
+     "crushing": "Сокрушительный удар",
+     "direct": "Прямое попадание",
+     "trauma": "Системная травма",
+     "glancing": "Скользящий удар"
+    },
+    "description": {
+     "crushing": "Ваш мех повреждён без возможности ремонта — он уничтожен. Вы можете выбраться из него как обычно.",
+     "direct": {
+      "3plus": "Ваш мех @LancerID[stunned] до конца вашего следующего хода.",
+      "2": "Пройдите проверку КОРПУСА. При успехе ваш мех @LancerID[stunned] до конца вашего следующего хода. При провале мех уничтожен.",
+      "1": "Ваш мех уничтожен."
+     },
+     "trauma": "Урон отрывает части вашего меха. Бросьте 1d6. На 1–3 уничтожается всё оружие на одном слоте по вашему выбору; на 4–6 — одна система по вашему выбору. ОГРАНИЧЕННЫЕ системы и оружие без зарядов выбирать нельзя. Если подходящих вариантов не осталось, срабатывает другой результат. Если не осталось ни систем, ни оружия, результат становится ПРЯМЫМ ПОПАДАНИЕМ.",
+     "glancing": "Аварийные системы стабилизируют мех, но он @LancerID[impaired] до конца вашего следующего хода."
+    }
+   },
+   "overheat": {
+    "title": {
+     "irreversible": "Необратимое расплавление",
+     "meltdown": "Расплавление",
+     "destabilized": "Нестабильный реактор",
+     "shunt": "Аварийный сброс"
+    },
+    "description": {
+     "irreversible": "Реактор идёт вразнос: в конце вашего следующего хода происходит расплавление реактора.",
+     "meltdown": {
+      "3plus": "Ваш мех становится @Compendium[world.status-items.Exposed]",
+      "2": "Пройдите проверку ИНЖЕНЕРИИ. При успехе ваш мех @Compendium[world.status-items.Exposed]. При провале реактор расплавится через 1d6 ваших ходов (бросает ГМ). Расплавление можно предотвратить, повторив проверку ИНЖЕНЕРИИ полным действием.",
+      "1": "В конце вашего следующего хода реактор вашего меха расплавляется."
+     },
+     "destabilized": "Реактор становится нестабильным и выбрасывает струи плазмы. Ваш мех становится @Compendium[world.status-items.Exposed].",
+     "shunt": "Системы охлаждения сдерживают нагрев, но мех @Compendium[world.status-items.Impaired] до конца вашего следующего хода."
+    }
+   },
+   "structureMonstrosity": {
+    "title": {
+     "fatal": "Смертельный удар",
+     "direct": "Прямое попадание",
+     "dismember": "Расчленение",
+     "powerful": "Мощный удар",
+     "glancing": "Скользящий удар"
+    },
+    "description": {
+     "fatal": "Чудовище уничтожено.",
+     "direct": {
+      "3plus": "Чудовище получает удар по голове и @LancerID[stunned] до конца своего следующего хода.",
+      "2": "Чудовище должно преуспеть в спасброске КОРПУСА, иначе оно уничтожено.",
+      "1": "Чудовище уничтожено."
+     },
+     "dismember": "Атака отрывает конечность или кусок Чудовища: оно получает 1d6 КИНЕТИЧЕСКОГО урона и @LancerID[slow] до конца сцены.",
+     "powerful": "Сила удара @LancerID[prone] Чудовище.",
+     "glancing": "Чудовище вздрагивает от боли: оно @LancerID[impaired] до конца своего следующего хода."
+    }
+   }
+  },
+  "compendium": {
+   "core_macros": "Макросы LANCER",
+   "lancer_info": "Справка LANCER",
+   "deployable": "Развёртываемые",
+   "mech-items": "Предметы мехов",
+   "npc-actors": "Готовые НИП",
+   "npc-items": "Предметы НИП",
+   "pilot-items": "Предметы пилотов",
+   "player-actors": "Готовые персонажи игроков",
+   "status-items": "Статусы/Состояния"
+  },
+  "tokenConfig": {
+   "manual_token_size": {
+    "label": "Размер жетона вручную",
+    "hint": "Не подгонять размер жетона автоматически"
+   }
+  },
+  "movement": {
+   "actions": {
+    "blink": "Телепорт (перемещение)",
+    "forced": "Принудительное перемещение",
+    "ignore": "Игнорировать местность",
+    "teleport": "Телепорт (способность)"
+   }
+  }
+ },
+ "LANCERINITIATIVE": {
+  "COMBAT": {
+   "activateCombatantTurn": "Начать ход участника",
+   "deactivateCombatantTurn": "Закончить ход участника"
+  },
+  "IconSettingsMenu": "Настройки значков",
+  "Icon": "Значок действия",
+  "IconDesc": "CSS-классы значка активации.",
+  "DeactivateIcon": "Значок деактивации",
+  "DeactivateIconDesc": "CSS-классы значка деактивации.",
+  "IconSize": "Размер значка",
+  "IconPreview": "Предпросмотр значка",
+  "PCColor": "Цвет игроков",
+  "PCColorDesc": "По умолчанию: #44abe0",
+  "FriendlyColor": "Цвет союзников",
+  "FriendlyColorDesc": "По умолчанию: #44abe0",
+  "NeutralColor": "Цвет нейтральных",
+  "NeutralColorDesc": "По умолчанию: #146464",
+  "EnemyColor": "Цвет врагов",
+  "EnemyColorDesc": "По умолчанию: #d98f30",
+  "DoneColor": "Цвет походивших",
+  "DoneColorDesc": "По умолчанию: #aaaaaa",
+  "ActivatedLast": "Походившие в конец",
+  "ActivatedLastDesc": "Перемещать походивших в конец трекера.",
+  "SortTracker": "Сортировать трекер",
+  "SortTrackerDesc": "Поднимать того, кто ходит, наверх трекера, а походивших — опускать в конец.",
+  "EnableInitiative": "Бросок инициативы",
+  "EnableInitiativeDesc": "Добавляет участникам кнопку броска инициативы",
+  "AddActivation": "Добавить активацию",
+  "RemoveActivation": "Убрать активацию",
+  "UndoActivation": "Отменить активацию"
+ }
+}

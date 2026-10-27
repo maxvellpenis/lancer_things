@@ -175,7 +175,7 @@ export class LsPilotSheet extends foundry.applications.sheets.ActorSheetV2 {
         ${m.id === aid ? '<span class="ls-tagon">активный</span>' : `<button type="button" class="ls-btn" data-ls="mechact" data-v="${m.id}">Сделать активным</button>`}
         <button type="button" class="ls-btn" data-ls="mechopen" data-v="${m.id}">Открыть</button></div>`).join("") || '<p class="ls-muted">Мехов пока нет.</p>'}
       <button type="button" class="ls-btn red" data-ls="mechnew">＋ Новый мех</button>
-      <p class="ls-muted ls-small">Чтобы мех открывался в нашем стиле: в окне меха «Лист» → «Лансеровские штучки — мех».</p>`;
+`;
   }
   renderCombat(ctx) {
     const s = this.document.system;

@@ -2,15 +2,42 @@
   "id": "lancer-shtuchki",
   "title": "Лансеровские штучки",
   "description": "Листы пилота, меха и НПС для системы LANCER в стиле «Лансеровских штучек»: лицензии, бонусы ядра, таланты, сборка меха, бой с выводом в чат. Только на русском.",
-  "version": "0.2.1",
-  "authors": [{ "name": "maxvellpenis" }],
-  "compatibility": { "minimum": "13", "verified": "13.351", "maximum": "13" },
-  "relationships": {
-    "systems": [{ "id": "lancer", "type": "system", "compatibility": { "minimum": "3.1.0" } }]
+  "version": "0.3.0",
+  "authors": [
+    {
+      "name": "maxvellpenis"
+    }
+  ],
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13.351",
+    "maximum": "13"
   },
-  "esmodules": ["scripts/main.mjs"],
-  "styles": ["styles/sheet.css"],
-  "languages": [],
+  "relationships": {
+    "systems": [
+      {
+        "id": "lancer",
+        "type": "system",
+        "compatibility": {
+          "minimum": "3.1.0"
+        }
+      }
+    ]
+  },
+  "esmodules": [
+    "scripts/main.mjs"
+  ],
+  "styles": [
+    "styles/sheet.css"
+  ],
+  "languages": [
+    {
+      "lang": "ru",
+      "name": "Русский",
+      "path": "lang/ru.json",
+      "system": "lancer"
+    }
+  ],
   "url": "https://github.com/maxvellpenis/lancer_things",
   "manifest": "https://raw.githubusercontent.com/maxvellpenis/lancer_things/main/foundry/module/module.json",
   "download": "https://raw.githubusercontent.com/maxvellpenis/lancer_things/main/foundry/lancer-shtuchki.zip"
