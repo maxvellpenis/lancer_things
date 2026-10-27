@@ -26,15 +26,15 @@
 .ls-muted { color:var(--ls-mut); } .ls-small { font-size:11px; font-weight:400; text-transform:none; letter-spacing:0; }
 .ls-warn { background:#4a3510; border:1px solid var(--ls-gold); padding:6px 10px; border-radius:4px; }
 .ls-txt { font-size:13px; line-height:1.4; margin:4px 0; }
-.ls-ico { font-family:monospace; font-size:.92em; color:#fff; background:#000; border:1px solid #444; padding:0 3px; border-radius:2px; }
-.ls-ico.acc { color:#5fd38a; border-color:#5fd38a; } .ls-ico.dif { color:#ff7070; border-color:#ff7070; } .ls-ico.rg { color:var(--ls-gold); border-color:#6b5a2a; }
+.ls-ico { font-family:monospace; font-size:.92em; color:#fff !important; background:#000 !important; border:1px solid #444; padding:0 3px; border-radius:2px; }
+.ls-ico.acc { color:#5fd38a !important; border-color:#5fd38a; } .ls-ico.dif { color:#ff7070 !important; border-color:#ff7070; } .ls-ico.rg { color:#d8b04a !important; border-color:#6b5a2a; }
 .ls-abox { margin:6px 0; border:1px solid var(--bc); background:var(--bb); font-size:13px; --bc:#11797c; --bb:#122528; }
 .ls-abox.kr { --bc:#11797c; --bb:#122528; } .ls-abox.kt { --bc:#7d2477; --bb:#24152a; } .ls-abox.ks { --bc:#4f8f2c; --bb:#172414; }
 .ls-abox.kw { --bc:#000; --bb:#1d1d1d; } .ls-abox.kw .ah { background:#050505; border-bottom:1px solid #444; }
 .ls-abox.ko { --bc:#b75300; --bb:#2a1a0c; } .ls-abox.kc { --bc:#a51e27; --bb:#2a1416; } .ls-abox.kx { --bc:#2f6fd0; --bb:#121d2c; }
 .ls-abox .ah { background:var(--bc); color:#fff; padding:3px 10px; display:flex; flex-direction:column; clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,0 100%); }
 .ls-abox .ah b { font-size:14px; } .ls-abox .ah span { font-family:monospace; font-size:12px; opacity:.95; } .ls-abox .ah .ls-ico { background:rgba(0,0,0,.35); }
-.ls-abox .ab { padding:5px 10px; }
+.ls-abox .ab { padding:5px 10px; color:#e6e6e6; } .ls-abox .ab b { color:#fff; }
 .ls-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:6px 0; }
 .ls-row select { flex:1; min-width:200px; }
 .ls-btn, .ls-pm, .ls-roll, .ls-x, .ls-pip { width:auto; flex:none; background:var(--ls-bg3); color:var(--ls-fg); border:1px solid var(--ls-line); border-radius:3px; padding:3px 10px; font-size:13px; cursor:pointer; }

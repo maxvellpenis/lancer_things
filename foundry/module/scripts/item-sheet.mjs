@@ -14,6 +14,8 @@ const MOUNT_RU = { Main: "Основной", Heavy: "Тяжёлый", Flex: "Г�
 const SYS_TYPE_RU = { System: "Система", AI: "ИИ", Shield: "Щит", Deployable: "Развёртываемое", Drone: "Дрон", Tech: "Технология", Armor: "Броня", "Flight System": "Полёт", Integrated: "Встроенное", Mod: "Мод" };
 
 /** HTML из данных предмета: без скриптов и обработчиков */
+/** «1/Round» → «1/раунд» — только для показа */
+const freqRu = f => String(f || "").replace(/round/i, "раунд").replace(/turn/i, "ход").replace(/encounter|scene/i, "сцена").replace(/mission/i, "миссия").replace(/^unlimited$/i, "");
 const safe = h => String(h ?? "").replace(/<script[\s\S]*?<\/script>/gi, "").replace(/\son\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "");
 /** Текст: если в нём уже есть разметка — показываем как есть, иначе форматируем как книжный текст */
 const txt = h => !h ? "" : /<\w+[\s>]/.test(h) ? safe(h) : fmt(h);
@@ -56,7 +58,7 @@ export class LsItemSheet extends foundry.applications.sheets.ItemSheetV2 {
     const P = typeof path === "function" ? path : (i => (path ? `${path}.${i}` : null));
     const norm = h => String(h || "").replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim();
     const dup = new Set([norm(near)].filter(Boolean));
-    return (list || []).map((a, i) => `<div class="ls-abox k${ACT_K[a.activation] || "r"}"><div class="ah"><b>${esc(a.name || "Действие")}</b><span>${esc(ACT_RU[a.activation] || a.activation || "")}${a.frequency ? ", " + esc(a.frequency) : ""}${a.heat_cost ? `, ${a.heat_cost} нагрева` : ""}</span></div>
+    return (list || []).map((a, i) => `<div class="ls-abox k${ACT_K[a.activation] || "r"}"><div class="ah"><b>${esc(a.name || "Действие")}</b><span>${esc(ACT_RU[a.activation] || a.activation || "")}${freqRu(a.frequency) ? ", " + esc(freqRu(a.frequency)) : ""}${a.heat_cost ? `, ${a.heat_cost} нагрева` : ""}</span></div>
       <div class="ab">${a.trigger ? `<div><b>Триггер:</b> ${txt(a.trigger)}</div>` : ""}${a.detail && !dup.has(norm(a.detail)) ? `<div>${a.trigger ? "<b>Эффект:</b> " : ""}${txt(a.detail)}</div>` : ""}
       ${own && P(i) ? `<button type="button" class="ls-roll" data-ls="act" data-p="${P(i)}">▶ Использовать</button>` : ""}</div></div>`).join("");
   }
