@@ -4,12 +4,28 @@ export { RU };
 export const MOD = "lancer-shtuchki";
 export const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
 export const sgn = n => (n >= 0 ? "+" : "") + n;
-/** Текст книги: **жирный**, переносы строк, значки [ТОЧН] и т.п. Всё экранируется. */
+/* ---------- текст книги: **жирный**, *курсив*, значки [ТОЧН]/[нагрев], карточки действий ⟦A⟧…⟦T⟧…⟦E⟧…⟦Z⟧ ---------- */
+const ICO_RU = { "ТОЧН": ["acc", "точн."], "СЛОЖН": ["dif", "неточн."], "НЕТОЧН": ["dif", "неточн."], "кин": ["", "кин."], "энерг": ["", "энерг."], "взр": ["", "взр."], "горение": ["", "горения"], "нагрев": ["", "нагрева"],
+  "Дальн": ["rg", "Дальн."], "Угроза": ["rg", "Угроза"], "Линия": ["rg", "Линия"], "Конус": ["rg", "Конус"], "Взрыв": ["rg", "Взрыв"], "Разрыв": ["rg", "Разрыв"], "ЗАЩ": ["", "защ."] };
+function fmt1(s) {
+  let h = esc(String(s ?? ""));
+  h = h.replace(/\*\*(.+?)\*\*/g, "<b>$1</b>");
+  h = h.replace(/(^|[\s(>])\*([^*<\n]+?)\*(?=[\s.,;:)<]|$)/gm, "$1<i>$2</i>");
+  h = h.replace(/\[(ТОЧН|СЛОЖН|НЕТОЧН|ЗАЩ|кин|энерг|взр|горение|нагрев|Дальн|Угроза|Линия|Конус|Взрыв|Разрыв)\]\s*/g, (m, k) => { const v = ICO_RU[k]; return `<span class="ls-ico ${v[0]}">${v[1]}</span>${v[0] === "rg" ? "&nbsp;" : " "}`; });
+  return h.replace(/\n/g, "<br>");
+}
 export function fmt(s) {
-  return esc(s)
-    .replace(/\*\*(.+?)\*\*/g, "<b>$1</b>")
-    .replace(/\[(ТОЧН|НЕТОЧН|ЗАЩ)\]/g, '<span class="ls-ic">$1</span>')
-    .replace(/\n/g, "<br>");
+  s = String(s ?? ""); let h = "", k = 0, m;
+  const re = /⟦A(?::(\w))?⟧([\s\S]*?)⟦T⟧([\s\S]*?)⟦E⟧([\s\S]*?)(?:⟦Z⟧|(?=⟦A)|$)/g;
+  while ((m = re.exec(s))) {
+    const pre = s.slice(k, m.index).trim(); if (pre) h += fmt1(pre);
+    const kind = m[1] || "r", name = m[2].trim(), tags = m[3].trim(), body = m[4].trim();
+    h += `<div class="ls-abox k${kind}">${name || tags ? `<div class="ah">${name ? `<b>${esc(name)}</b>` : ""}${tags ? `<span>${fmt1(tags)}</span>` : ""}</div>` : ""}${body ? `<div class="ab">${fmt1(body)}</div>` : ""}</div>`;
+    k = re.lastIndex;
+    if (re.lastIndex === m.index) re.lastIndex++;
+  }
+  const rest = s.slice(k).trim(); if (rest) h += fmt1(rest);
+  return h;
 }
 export const asset = p => `modules/${MOD}/${p}`;
 export const MANU = { GMS: "ДМС", "IPS-N": "ИПС-Н", SSC: "СШК", HORUS: "ХОРУС", HA: "ОПХ" };

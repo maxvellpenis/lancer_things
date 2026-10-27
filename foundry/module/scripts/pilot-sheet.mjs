@@ -11,6 +11,24 @@ const HASE_FX = {
 };
 const TABS = [["pilot", "Пилот"], ["mechs", "Мехи"], ["combat", "Бой"], ["char", "Персонаж"]];
 
+/** Смена портрета: портрет + жетон-прототип + уже стоящие на картах жетоны этого актёра,
+ *  если их картинка совпадала со старым портретом/прототипом (свою отдельную картинку жетона не трогаем). */
+export async function setPortrait(actor, path) {
+  const oldImg = actor.img, oldTok = actor.prototypeToken?.texture?.src;
+  const defaults = [CONST.DEFAULT_TOKEN, "icons/svg/mystery-man.svg", oldImg].filter(Boolean);
+  const syncProto = !oldTok || defaults.includes(oldTok);
+  const def = syncProto ? [...defaults, oldTok].filter(Boolean) : defaults;
+  const upd = { img: path };
+  if (syncProto) upd["prototypeToken.texture.src"] = path;
+  await actor.update(upd);
+  for (const scene of game.scenes ?? []) {
+    const toks = scene.tokens.filter(t => t.actorId === actor.id && t.actorLink && t.isOwner && def.includes(t.texture?.src));
+    if (!toks.length) continue;
+    try { await scene.updateEmbeddedDocuments("Token", toks.map(t => ({ _id: t.id, "texture.src": path }))); }
+    catch (e) { console.warn("lancer-shtuchki | не удалось обновить жетон", e); }
+  }
+}
+
 export class LsPilotSheet extends foundry.applications.sheets.ActorSheetV2 {
   static DEFAULT_OPTIONS = {
     classes: ["ls-sheet", "ls-pilot"],
@@ -216,7 +234,7 @@ export class LsPilotSheet extends foundry.applications.sheets.ActorSheetV2 {
     if (!this.isEditable) return;
     const ctx = await this._prepareContext({});
     switch (act) {
-      case "img": return new foundry.applications.apps.FilePicker.implementation({ type: "image", current: a.img, callback: p => a.update({ img: p }) }).browse();
+      case "img": return new foundry.applications.apps.FilePicker.implementation({ type: "image", current: a.img, callback: p => setPortrait(a, p) }).browse();
       case "ll": return a.update({ "system.level": Math.max(0, Math.min(12, (a.system.level || 0) + d)) });
       case "hase": return a.update({ [`system.${v}`]: Math.max(0, Math.min(6, (a.system[v] || 0) + d)) });
       case "hp": return a.update({ "system.hp.value": Math.max(0, Math.min(a.system.hp.max, a.system.hp.value + d)) });
